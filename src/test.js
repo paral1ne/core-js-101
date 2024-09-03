@@ -1,14 +1,11 @@
-function encodeToRot13(str) {
-  let key = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-  let secondKey = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
-  return str
-    .split('')
-    .map((el) => {
-      return key.includes(el) ? secondKey[key.indexOf(el)] : el;
-    })
-    .join('');
-}
+// function isString(val) {
+//   console.log([...val]);
 
-console.log(
-  encodeToRot13('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz?')
-);
+//   return (
+//     typeof [...val].reduce((acc, el) => {
+//       return acc.concat(el);
+//     }, '') === 'string'
+//   );
+// }
+
+// console.log(isString(new String(null)));

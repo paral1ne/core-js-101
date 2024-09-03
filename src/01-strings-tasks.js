@@ -50,7 +50,7 @@ function getStringLength(value) {
  *   'Chuck','Norris'  => 'Hello, Chuck Norris!'
  */
 function getStringFromTemplate(first, last) {
-  return `Hello, ${first} ${last}`;
+  return `Hello, ${first} ${last}!`;
 }
 
 /**
@@ -64,7 +64,7 @@ function getStringFromTemplate(first, last) {
  *   'Hello, Chuck Norris!' => 'Chuck Norris'
  */
 function extractNameFromTemplate(greet) {
-  return greet.slice(7, greet.length - 2);
+  return greet.slice(7, greet.length - 1);
 }
 
 /**
@@ -199,9 +199,9 @@ function extractEmails(string) {
  *
  */
 function getRectangleString(w, h) {
-  let top = `┌` + '─'.repeat(w - 2) + '┐\n';
-  let bot = '└' + '─'.repeat(w - 2) + '┘\n';
-  let middle = ('│' + ' '.repeat(w - 2) + '│\n').repeat(h - 2);
+  const top = `┌${'─'.repeat(w - 2)}┐\n`;
+  const bot = `└${'─'.repeat(w - 2)}┘\n`;
+  const middle = `│${' '.repeat(w - 2)}│\n`.repeat(h - 2);
   return top + middle + bot;
 }
 
@@ -222,13 +222,11 @@ function getRectangleString(w, h) {
  *
  */
 function encodeToRot13(str) {
-  let key = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-  let secondKey = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
+  const key = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+  const secondKey = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
   return str
     .split('')
-    .map((el) => {
-      return key.includes(el) ? secondKey[key.indexOf(el)] : el;
-    })
+    .map((el) => (key.includes(el) ? secondKey[key.indexOf(el)] : el))
     .join('');
 }
 
@@ -245,8 +243,8 @@ function encodeToRot13(str) {
  *   isString('test') => true
  *   isString(new String('test')) => true
  */
-function isString(/* value */) {
-  throw new Error('Not implemented');
+function isString(value) {
+  return typeof value === 'string' || value instanceof String;
 }
 
 /**
@@ -273,8 +271,62 @@ function isString(/* value */) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId(/* value */) {
-  throw new Error('Not implemented');
+function getCardId(value) {
+  const arr = [
+    'A♣',
+    '2♣',
+    '3♣',
+    '4♣',
+    '5♣',
+    '6♣',
+    '7♣',
+    '8♣',
+    '9♣',
+    '10♣',
+    'J♣',
+    'Q♣',
+    'K♣',
+    'A♦',
+    '2♦',
+    '3♦',
+    '4♦',
+    '5♦',
+    '6♦',
+    '7♦',
+    '8♦',
+    '9♦',
+    '10♦',
+    'J♦',
+    'Q♦',
+    'K♦',
+    'A♥',
+    '2♥',
+    '3♥',
+    '4♥',
+    '5♥',
+    '6♥',
+    '7♥',
+    '8♥',
+    '9♥',
+    '10♥',
+    'J♥',
+    'Q♥',
+    'K♥',
+    'A♠',
+    '2♠',
+    '3♠',
+    '4♠',
+    '5♠',
+    '6♠',
+    '7♠',
+    '8♠',
+    '9♠',
+    '10♠',
+    'J♠',
+    'Q♠',
+    'K♠',
+  ];
+  return arr.indexOf(value);
 }
 
 module.exports = {
