@@ -87,7 +87,13 @@ function getDistanceBetweenPoints(x1, y1, x2, y2) {
  *   5*x = 0         => 0
  */
 function getLinearEquationRoot(a, b) {
-  return b - a;
+  if (a && b) {
+    return -b / a;
+  }
+  if (b) {
+    return a - b;
+  }
+  return 0;
 }
 
 /**
@@ -183,7 +189,8 @@ function getParallelepipedDiagonal(a, b, c) {
  *   1678, 3  => 2000
  */
 function roundToPowerOfTen(num, pow) {
-  return num - (num % pow) * 10;
+  const multipler = 10 ** pow;
+  return Math.round(num / multipler) * multipler;
 }
 
 /**
@@ -225,8 +232,9 @@ function isPrime(n) {
  *   toNumber(42, 0) => 42
  *   toNumber(new Number(42), 0) => 42
  */
-function toNumber(/* value, def */) {
-  throw new Error('Not implemented');
+function toNumber(value, def) {
+  const num = Number(value);
+  return Number.isNaN(num) ? def : num;
 }
 
 module.exports = {
